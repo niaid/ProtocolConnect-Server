@@ -1,0 +1,111 @@
+== Introduction ==
+The web server communicates with mobile clients via a RESTful API.  All queries and
+responses are in JSON formats.
+
+== Source Code ==
+The source code for the server side RESTful API is in ../server/main.ts.
+
+== Server Address ==
+https://np-p.net/
+
+The website servers two purposes:
+ (1) Admin Portal: when visited using a browser, the website provides a portal to 
+     manage patient information, and 
+ (2) RESTful API for mobile clients: under URLs starting with https://np-p.net/api/v1/,
+     the website provides the API for mobile clients to query and post data.
+
+== Security ==
+The website is encrypted via SSL and protected by a password (username: a, password: b). 
+A very short password is used because it is only intended to prevent casual internet 
+users from seeing the initial web page, and importantly additional authentication is required
+to use either of the two functions above.  If necessary, a longer password may be used 
+to add additional security.
+
+== API Entry Points ==
+All APIs entry points start with the following URL prefix:
+https://np-p.net/api/v1/
+
+The following is a list of current API URLs:
+
+* List subjects:
+      https://np-p.net/api/v1/subjects
+
+* List details of a subject (replace ":id" with "email:password"):
+      https://np-p.net/api/v1/subjects/:id
+  This URL is mainly for testing and will be disabled in production.
+
+* List studies:
+      https://np-p.net/api/v1/studies
+
+* List details of a study (replace ":id" with study ID):
+      https://np-p.net/api/v1/studies/:id
+      
+* List "study flows":
+      https://np-p.net/api/v1/studyflows
+      
+* List details of a "study flow" (replace ":id" with study flow ID):
+      https://np-p.net/api/v1/studyflows/:id
+      
+* List patient responses (GET):
+      https://np-p.net/api/v1/patient_responses
+
+* List patient responses (POST):
+      https://np-p.net/api/v1/patient_responses
+
+  The POST request may provide the following additional parameters:
+            studyflow_id
+            event_id
+            subject_email
+            response_text
+            response_ID
+            curReasonID
+            indicated_status
+            est_arrival
+            submit_time
+            additional_response
+
+* List all patient responses for one event (replace ":event_id" with the event ID):
+      https://np-p.net/api/v1/patient_responses/:event_id
+
+* List the latest patient responses for one event (replace ":event_id" with the event ID):
+      https://np-p.net/api/v1/patient_responses/:event_id/latest
+
+* List events:
+      https://np-p.net/api/v1/events
+
+* List details of one event:
+      https://np-p.net/api/v1/events/:id
+  ":id" takes the format  "KEY:VALUE". The possibilities are:
+  (1) KEY = "subject_id", VALUE = the subject ID
+  (1) KEY = "subject_email", VALUE = the subject email
+  (1) KEY = "event_id", VALUE = the event ID
+
+* Email verification. When a subject is registered, the system may send her a verification
+  email.  A link would be provided in the email for the user to click and verify her
+  address.  The link's format is (replace ":id" with the subject email):
+      https://np-p.net/api/v1/verifyEmail/:id
+
+* Link to request an email for resetting password (replace ":id" with the subject email):
+      https://np-p.net/api/v1/resetPassword/:id
+
+* Update password (replace ":id" with the subject email, ":oldpass" with the old password,
+  and ":newpass" with the new one):
+      https://np-p.net/api/v1/updatePassword/:id/:oldpass/:newpass
+
+* (GET) List messages sent to or received from a subject (replace ":email" with the subject's email,
+  and ":since" with the number of seconds since 00:00:00 Coordinated Universal Time (UTC),
+  Thursday, 1 January 1970):
+      https://np-p.net/api/v1/subjects/:email/messages/get/:since
+
+* (POST) Send message (replace ":email" with the subject's email; note the email is only used as an ID for the subject):
+      https://np-p.net/api/v1/subjects/:email/messages/send
+  The POST request should provide the following parameters:
+            is_to_patient  // 1 if the message is from admin to the subject; 0 otherwise
+            epoch          // Time of the message represented by the number of seconds 
+                           // since 00:00:00 UTC, 1/1/1970
+            content        // text of the message
+
+* Contact: get contact information of the administrator.
+       https://np-p.net/api/v1/contact
+  to update, use browser and go to https://np-p.net/contact
+

@@ -1,0 +1,12 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/niceilm/typed-meteor-restivus/ce3e2f4a80dc871b3d40a927c7c2ff526f0b16aa/typings.json",
+    "raw": "registry:global/meteor-restivus#1.0.0+20160905020347",
+    "main": "index.d.ts",
+    "version": "0.8.11",
+    "global": true,
+    "name": "meteor-restivus",
+    "type": "typings"
+  }
+}

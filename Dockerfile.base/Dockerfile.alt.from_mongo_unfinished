@@ -1,0 +1,35 @@
+FROM mongo:3.2
+MAINTAINER Yong Lu <yong.lu@nih.gov>
+
+USER root
+
+ENV NODEJS 4.6.0
+ENV METEOR 1.4.1.1
+
+WORKDIR /tmp
+
+RUN apt-get -y update
+RUN wget "https://nodejs.org/dist/v${NODEJS}/node-v${NODEJS}-linux-x64.tar.gz" && \
+    cd /usr/local && \
+    tar --strip-components 1 -xzf /tmp/node-v${NODEJS}-linux-x64.tar.gz && \
+    npm update -g && npm install -g forever 
+RUN (curl "https://install.meteor.com/?release=${METEOR}" | sh) && \
+    rm -rf /tmp/*
+
+RUN apt-get -y install locales less vim net-tools tmux ; apt-get clean
+RUN (echo "\nen_US.UTF-8 UTF-8\n" >> /etc/locale.gen) && locale-gen && \
+     update-locale LANG=en_US.utf8 && \
+     echo "LANG=en_US.utf8\nexport LANG" >> /etc/profile
+
+
+RUN mkdir -p /data/db; chmod 777 /data/db
+
+RUN useradd default
+## 
+## EXPOSE 27017
+## 
+## USER mongodb
+## 
+## ##ENTRYPOINT ["/usr/bin/mongod"]
+## CMD ["/usr/bin/mongod"]
+CMD ["/bin/bash","-l"]

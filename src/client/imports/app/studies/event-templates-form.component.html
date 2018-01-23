@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-sm-12 col-sm-offset-3">
+    <div class="jumbotron">
+      <form [formGroup]="eventtemplatesForm" (ngSubmit)="addEventTemplate()" class="form-horizontal">
+  <fieldset class="form-group">
+    <h4>Add event to the Study Flow:</h4>
+    <!-- <input [disabled]="true" type="text" [(ngModel)]="studyflow._id" class="form-control"> -->
+
+    <label for="day">Event day (required)</label>
+    <input id="day" class="form-control" type="text" formControlName="day" placeholder="E.g. 1" />
+
+    <label for="time">Event Time (required)</label>
+    <input id="time" class="form-control" type="text" formControlName="time" placeholder="E.g. 14:00:00 (must be in 24 hour format)" />
+
+
+    <label for="name">Event name (required)</label>
+    <input id="name" class="form-control" type="text" formControlName="name" placeholder="E.g. Blood draw" />
+
+    <label for="location">Location (required)</label>
+    <input id="location" class="form-control" type="text" formControlName="location" placeholder="E.g. Building 10 Rm xxx">
+
+    <label for="notes">Notes (optional)</label>
+    <input id="notes" class="form-control" type="text" formControlName="notes" placeholder="Additional notes">
+
+    <label>Allow patient response to the event on mobile device</label>
+    <input type="checkbox" formControlName="question">
+
+
+        <button type="submit" class="btn btn-primary">Add Event Template</button>
+  </fieldset>
+       
+      </form>
+    </div>
+  </div>
+</div>
+
+

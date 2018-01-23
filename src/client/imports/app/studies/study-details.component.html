@@ -1,0 +1,105 @@
+<div class="row ma-study-details-container">
+  <div class="col-sm-9 col-sm-offset-1">
+    <div class="jumbotron"> 
+    <h4>Details of the Study</h4>
+    <form class="form-horizontal" *ngIf="study" (submit)="saveStudy()">
+      <div class="form-group">
+        <label>Study Name (required)</label>
+        <input type="text" [(ngModel)]="study.name" name="name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Description (optional)</label>
+        <input type="text" [(ngModel)]="study.description" name="description" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Location name (required)</label>
+        <input type="text" [(ngModel)]="study.location" name="location" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button [routerLink]="['/']" class="btn">Back</button> 
+      </div>
+      <a [routerLink]="['/study', study._id, 'contact']">View/update admin contact info.</a>
+    </form>
+  </div>
+</div>
+
+  <div class="col-sm-9 col-sm-offset-1">
+    <div class="jumbotron"> 
+      <h4>Existing Studyflows</h4>
+      <div class="form-group">
+        <ul>
+          <li *ngFor="let flow of studyflows | async">
+            <h5>
+              <a [routerLink]="['studyflow', flow._id]">{{flow.name}}</a>
+              <button class="btn btn-danger" (click)="removeStudyFlow(flow)">X</i></button>
+          </h5>
+          <a [routerLink]="['studyflow', flow._id, 'responses']">Responses</a> from subjects in "{{flow.name}}"
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <div class="col-sm-9 col-sm-offset-1">
+    <legend> Current Study flows: </legend>
+      <div class="form-group">
+        <ul>
+          <li *ngFor="let flow of studyflows | async">
+              <a [routerLink]="['/studyflow', flow._id]">{{flow.name}}</a>
+              <button class="btn btn-danger" [hidden]="!isOwner" (click)="removeStudyFlow(flow)"><i class="fa fa-times"></i></button>
+          </li>
+        </ul>
+      </div>
+  </div>
+-->
+</div>
+
+<!--
+<form [formGroup]="studyflowsForm" (ngSubmit)="addStudyFlow()" class="form-inline">
+  <fieldset class="form-group">
+    <label for="studyName">Study name</label>
+    <input id="studyName" class="form-control" type="text" formControlName="name" placeholder="Study name" />
+ 
+    <label for="description">Description</label>
+    <input id="description" class="form-control" type="text" formControlName="description" placeholder="Description">
+ 
+    <label for="location_name">Location</label>
+    <input id="location_name" class="form-control" type="text" formControlName="location" placeholder="Location name">
+ 
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" formControlName="public">
+        Public
+      </label>
+    </div>
+ 
+    <button type="submit" class="btn btn-primary">Add Study!</button>
+  </fieldset>
+</form>
+-->
+
+<div class="row">
+  <div class="col-sm-9 col-sm-offset-1">
+    <div class="jumbotron">
+      <form [formGroup]="studyflowsForm" (ngSubmit)="addStudyFlow()" *ngIf="study">
+  <fieldset class="form-group">
+    <h4>Add a Studyflow to This Study</h4>
+    <!-- <input [disabled]="true" type="text" [(ngModel)]="study._id" name="_id" class="form-control"> -->
+
+    <label for="studyflowName">Studyflow name (required)</label>
+    <input id="studyflowName" class="form-control" type="text" formControlName="name" placeholder="Study flow name" />
+
+    <label for="description">Description (optional)</label>
+    <input id="description" class="form-control" type="text" formControlName="description" placeholder="Description">
+    <button type="submit" class="btn btn-primary">Add Studyflow</button>
+  </fieldset>
+       
+  <!-- <button [routerLink]="['/']">Cancel</button> -->
+      </form>
+    </div>
+  </div>
+</div>
+

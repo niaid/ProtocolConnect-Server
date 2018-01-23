@@ -1,0 +1,7 @@
+node_modules/
+*.swp
+.meteor/local/.typescript-cache/
+.meteor/local/bundler-cache/
+.meteor/local/build/
+attic/
+.meteor/local/db/

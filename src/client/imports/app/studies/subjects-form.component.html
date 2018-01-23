@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-sm-12 col-sm-offset-3">
+    <div class="jumbotron">
+      <!-- <form [formGroup]="subjectsForm" (ngSubmit)="addSubject()" *ngIf="studyflow"> -->
+      <form [formGroup]="subjectsForm" (ngSubmit)="addSubject()">
+  <fieldset class="form-group">
+    <h4>Add subject to the Study Flow</h4>
+    <!--    <input [disabled]="true" type="text" [(ngModel)]="studyflow._id" class="form-control"> -->
+
+    <label for="subjectFirstname">First Name (required)</label>
+    <input id="subjectFirstname" class="form-control" type="text" formControlName="firstname" placeholder="E.g. Abraham" />
+
+    <label for="subjectLastname">Last Name (required)</label>
+    <input id="subjectLastname" class="form-control" type="text" formControlName="lastname" placeholder="E.g. Lincoln" />
+
+    <label for="subjectEmail">Email (required)</label>
+    <input id="subjectEmail" class="form-control" type="text" formControlName="email" placeholder="E.g. abraham.lincoln@whitehouse.gov" />
+
+    <label for="subjectEmail2">Email (repeat again)</label>
+    <input id="subjectEmail2" class="form-control" type="text" formControlName="email2" placeholder="enter the same email again" />
+
+        <button type="submit" class="btn btn-primary">Add Subject</button>
+  </fieldset>
+       
+      </form>
+    </div>
+  </div>
+</div>
+

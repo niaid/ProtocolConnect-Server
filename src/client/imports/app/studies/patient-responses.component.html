@@ -1,0 +1,51 @@
+<div class="row ma-studyflow-subject-events-container">
+  <div class="col-sm-12 col-sm-offset-1">
+ 
+    <div class="jumbotron">
+    <legend>View Subject Responses:</legend>
+    <hr/>
+    <!-- <form class="form-horizontal" (submit)="saveStudyFlowSubjectEvents(events)"> -->
+    <!-- <div class="form-group"> -->
+    <div class="form-horizontal">
+        <label>Responsess:</label>
+        <table border="1">
+          <tr>
+            <td><b>Submitted on</b></td>
+            <td><b>Lastname</b></td>
+            <td><b>Firstname</b></td>
+            <td><b>Email</b></td>
+            <td><b>Event Name</b></td>
+            <td><b>Event Time</b></td>
+            <td><b>Response</b></td>
+            <td><b>Reason</b></td>
+            <td><b>Estimated Arrival</b></td>
+            <!--
+            <td>"Name"</td>
+            <td>"Location"</td>
+            <td>"Status"</td>
+-->
+          </tr>
+          <tr *ngFor="let resp of responses | async">
+            <td>{{resp.submit_time}}</td>
+            <td>{{resp.lastname}}</td>
+            <td>{{resp.firstname}}</td>
+            <td>{{resp.subject_email}}</td>
+            <td>{{resp.event_name}}</td>
+            <td>{{resp.event_time}}</td>
+            <td>{{resp.response_text}}</td>
+            <td>{{resp.reason_text}}</td>
+            <td>{{resp.est_arrival}}</td>
+          </tr>
+        </table>
+      </div>
+
+
+      <div class="form-group">
+        <!-- <button [disabled]="!isOwner" type="submit" class="btn btn-primary">Save</button> -->
+        <button [routerLink]="['../../..']" class="btn">Back</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+

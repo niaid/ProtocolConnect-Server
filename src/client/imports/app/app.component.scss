@@ -1,0 +1,9 @@
+app {
+#login-sign-in-link{
+  visibility: hidden;
+}
+#login-sign-in-link:after{
+  visibility: visible;
+  content: 'SIGN IN'; 
+}
+}

@@ -1,0 +1,34 @@
+<div class="col-sm-12 col-sm-offset-3">
+  <div class="form-horizontal">
+      <div class="form-group">
+        <h4>Current list of events:</h4>
+        <ul>
+          <li>
+          <input [disabled]="true" type="text" placeholder="Day"      class="col-sm-1">
+          <input [disabled]="true" type="text" placeholder="Time"     class="col-sm-1">
+          <input [disabled]="true" type="text" placeholder="Event"    class="col-sm-4">
+          <input [disabled]="true" type="text" placeholder="Location" class="col-sm-3">
+          </li>
+        </ul>
+        <ul>
+          <li *ngFor="let et of event_templates | async">
+          <!--
+          <b>Day:</b> <input [disabled]="true" type="text" [(ngModel)]="et.day" class="form-control">
+          <b>Time:</b><input [disabled]="true" type="text" [(ngModel)]="et.time" class="form-control">
+          <b>Name:</b><input [disabled]="true" type="text" [(ngModel)]="et.name" class="form-control">
+          <b>Location:</b><input [disabled]="true" type="text" [(ngModel)]="et.location" class="form-control">
+          <button class="btn btn-danger" (click)="removeEventTemplate(et)">Delete</button>
+          <hr/>
+-->
+          <input [disabled]="true" type="text" [(ngModel)]="et.day"      class="col-sm-1">
+          <input [disabled]="true" type="text" [(ngModel)]="et.time"     class="col-sm-1">
+          <input [disabled]="true" type="text" [(ngModel)]="et.name"     class="col-sm-4">
+          <input [disabled]="true" type="text" [(ngModel)]="et.location" class="col-sm-3">
+          <button class="btn btn-danger" (click)="removeEventTemplate(et)"><small>X</small></button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+

@@ -1,0 +1,21 @@
+<form [formGroup]="studiesForm" (ngSubmit)="addStudy()" class="form-horizontal">
+  <fieldset class="form-group">
+    <label for="studyName">Study Name (required)</label>
+    <input id="studyName" class="form-control" type="text" formControlName="name" placeholder="Study name" />
+ 
+    <label for="description">Description (optional)</label>
+    <input id="description" class="form-control" type="text" formControlName="description" placeholder="Description of the study">
+ 
+    <label for="location_name">Location (required)</label>
+    <input id="location_name" class="form-control" type="text" formControlName="location" placeholder="Location of the study">
+ 
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" formControlName="public">
+        Public
+      </label>
+    </div>
+ 
+    <button type="submit" class="btn btn-primary">Add Study!</button>
+  </fieldset>
+</form>

@@ -1,0 +1,50 @@
+FROM lsb/meteor_base:latest
+MAINTAINER Jonathan Groth <grothja@niaid.nih.gov>
+
+USER root
+
+RUN mkdir -p /opt/meteorapp/build
+
+WORKDIR /opt/meteorapp
+
+ADD ./src ./app
+
+RUN cd app && rm -rf node_modules && npm install --production 
+## See also: https://github.com/Urigo/angular2-meteor#static-resources
+##RUN cd app && npm i -g generator-ng-fullstack@latest && npm install typings --global && \
+RUN cd app && npm install --save-dev @types/node
+RUN cd app && npm install typings --global && \
+    typings install --save --global env~node && \
+    typings install registry:env/meteor --global && \
+    typings install registry:global/meteor-restivus --global --save && \
+    typings install github:meteor-typings/angular2-compilers#c2ca3d3036b08f04a22b98ed16ff17377499e1e7 --global && \
+    meteor add angular2-compilers@0.6.2_1
+##METEOR_PROFILE=1 METEOR_LOG=debug meteor --port 4000  --verbose 2>&1 | tee run.log
+RUN cd app && mkdir -p ../build && meteor build ../build --directory
+RUN cd app && cd ../build/bundle/programs/server && \
+    npm install && \
+    chown -R mongdb:mongdb /opt/meteorapp
+
+RUN apt-get update && apt-get -y install cron
+
+# Add crontab file in the cron directory
+ADD crontab /etc/cron.d/hello-cron
+ADD mongo-job.js /mongo-job.js
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/hello-cron
+
+# Create the log file to be able to run tail
+RUN touch /var/log/cron.log
+
+ADD ./scripts/start.sh /start.sh
+RUN chmod 755 /start.sh
+
+USER mongodb
+
+EXPOSE 3000
+ENV PORT 3000
+
+##CMD ["forever", "--minUptime", "1000", "--spinSleepTime", "1000", "/opt/meteorapp/build/bundle/main.js"]
+##CMD ["/bin/bash", "/start.sh"]
+CMD cron && /bin/bash /start.sh

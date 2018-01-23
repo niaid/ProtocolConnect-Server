@@ -1,0 +1,12 @@
+<div class="jumbotron">
+  <form class="form-horizontal" (submit)="setStudyFlowSubjectEventsFirstDay()" *ngIf="firstEvent">
+    <div class="form-group">
+      <h4><label>Change date of the first event:</label></h4>
+      <label>Set the first event to</label>
+        <input type="datetime-local" [(ngModel)]="firstEvent.time" name="time">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <button [routerLink]="['../../..']" class="btn">Cancel</button>
+        <p>(To reveal the calendar, <b>hover</b> mouse over the field and click the <b>down-arrow</b>).</p>
+    </div>
+  </form>
+</div>

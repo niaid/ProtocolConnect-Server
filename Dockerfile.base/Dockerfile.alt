@@ -1,0 +1,38 @@
+FROM node:4
+MAINTAINER Yong Lu <yong.lu@nih.gov>
+
+USER root
+
+ENV METEOR 1.4.1.1
+
+WORKDIR /tmp
+
+RUN apt-get -y update
+RUN npm update -g && npm install -g forever 
+RUN (curl "https://install.meteor.com/?release=1.4.1.2" | sh) && \
+    rm -rf /tmp/*
+
+RUN apt-get -y install locales less vim net-tools; apt-get clean
+RUN apt-get -y install tmux; apt-get clean
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 && \
+    echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/3.2 main" > \
+    /etc/apt/sources.list.d/mongodb-org-3.2.list && apt-get -y update
+RUN apt-get install -y mongodb-org
+RUN apt-get install -y telnet
+RUN (echo "\nen_US.UTF-8 UTF-8\n" >> /etc/locale.gen) && locale-gen && \
+     update-locale LANG=en_US.utf8 && \
+     echo "LANG=en_US.utf8\nexport LANG" >> /etc/profile
+RUN npm install typings --global
+
+
+RUN mkdir -p /data/db; chmod 777 /data/db
+
+RUN useradd default
+## 
+## EXPOSE 27017
+## 
+## USER mongodb
+## 
+## ##ENTRYPOINT ["/usr/bin/mongod"]
+## CMD ["/usr/bin/mongod"]
+CMD ["/bin/bash","-l"]

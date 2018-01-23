@@ -1,0 +1,46 @@
+<div class="row ma-filters">
+  <div class="col-md-12">
+    <div class="jumbotron">
+    <h4>Search for Studies:</h4>
+    <form class="form-inline">
+      <input type="text" class="form-control" #searchtext placeholder="Search by Location">
+      <button type="button" class="btn btn-primary" (click)="search(searchtext.value)">Search</button>
+      <!--
+      Sort by name: <select class="form-control" #sort (change)="changeSortOrder(sort.value)">
+      <option value="1" selected>Ascending</option>
+      <option value="-1">Descending</option>
+    </select>
+-->
+    </form>
+   </div>
+  </div>
+</div>
+
+<div class="row ma-filters">
+  <div class="col-md-12">
+    <div class="jumbotron">
+  <h4>Study List:</h4>
+  <ul>
+    <li *ngFor="let study of studies | async">
+            <h5 class="ma-study-name">
+      <a [routerLink]="['/study', study._id]">{{study.name}}</a>
+      @ {{study.location}}
+      <button class="btn btn-danger" (click)="removeStudy(study)">X</button>
+    </h5>
+          <p class="ma-study-description">
+            {{study.description}}
+            </p>
+    </li>
+  </ul>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="jumbotron">
+      <h4>Create a new study!</h4>
+      <studies-form [hidden]="!user"></studies-form>
+      <div [hidden]="user">You need to login to create new studies!</div>
+    </div>
+  </div>
+</div>
+
+

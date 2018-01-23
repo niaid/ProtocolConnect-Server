@@ -1,0 +1,34 @@
+<div class="col-sm-12 col-sm-offset-3">
+  <div>
+        <h4>Current list of subjects:</h4>
+        <div class="form-horizontal">
+        <ul>
+          <li>
+          <input [disabled]="true" type="text" placeholder="First Name" class="col-sm-2">
+          <input [disabled]="true" type="text" placeholder="Last Name"  class="col-sm-2">
+          <input [disabled]="true" type="text" placeholder="Email"      class="col-sm-3">
+          </li>
+        </ul>
+        <ul>
+          <li *ngFor="let subject of subjects | async">
+          <!--
+          <b>Last Name:</b><input [disabled]="true" type="text" [(ngModel)]="subject.lastname" class="form-control">
+          <b>First Name:</b><input [disabled]="true" type="text" [(ngModel)]="subject.firstname" class="form-control">
+          <b>Email:</b><input [disabled]="true" type="text" [(ngModel)]="subject.email" class="form-control">
+          <a [routerLink]="['../subject', subject.subject_id, 'event']"><button class="btn btn-primary">Edit Event Dates</button></a>
+          <button class="btn btn-danger" (click)="removeSubjectFromStudyFlow(subject)">Delete</button>
+-->
+          <input [disabled]="true" type="text" [(ngModel)]="subject.firstname"  class="col-sm-2">
+          <input [disabled]="true" type="text" [(ngModel)]="subject.lastname" class="col-sm-2">
+          <input [disabled]="true" type="text" [(ngModel)]="subject.email"     class="col-sm-3">
+          <a [routerLink]="['/subject', subject.email, 'messages']"><button class="btn btn-primary"><small>Send Message</small></button></a>
+          <a [routerLink]="['../subject', subject.subject_id, 'event']"><button class="btn btn-primary"><small>Edit Event Dates</small></button></a>
+          <button class="btn btn-danger" (click)="removeSubjectFromStudyFlow(subject)"><small>X</small></button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+

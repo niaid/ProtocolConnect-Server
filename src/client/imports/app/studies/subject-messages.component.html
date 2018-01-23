@@ -1,0 +1,25 @@
+<div class="col-sm-12 col-sm-offset-3">
+  <h5>Previous Messages</h5>
+  <div style="height:400px;width:800px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+  <ul>
+    <li *ngFor="let message of messages |async">
+      <p><font color='gray'>({{message.date}})</font></p>
+        <p *ngIf="message.is_to_patient"> 
+          <font color='blue'>&nbsp;me (admin)</font>: {{message.content}}
+        </p>
+        <p *ngIf="!message.is_to_patient">  
+        <font color='red'>&nbsp;{{message.firstname}}&nbsp;{{message.lastname}}</font>: {{message.content}}
+        </p>
+    </li>
+  </ul>
+  </div>
+</div>
+<hr/>
+<div class="col-sm-12 col-sm-offset-3">
+  <h5>Send a new message</h5>
+    <form class="col-sm-6">
+      <input type="text" class="form-control" #msgContent placeholder="Type your message here">
+      <button type="button" class="btn btn-primary" (click)="sendMsg(msgContent.value)">Send</button>
+    </form>
+</div>
+

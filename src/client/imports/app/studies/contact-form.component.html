@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-sm-12 col-sm-offset-3">
+    <div class="jumbotron">
+      <h4>Current contact:</h4>
+      <ul>
+      <li *ngFor="let contact of this.current_contact_obs | async">
+<pre>
+Name: {{contact.firstname}} {{contact.lastname}}
+Phone: {{contact.phone}}
+Email: {{contact.email}}
+</pre>
+      </li>
+      </ul>
+
+      <form [formGroup]="contactForm" (ngSubmit)="updateContact()">
+  <fieldset class="form-group">
+    <h4>Contact information</h4>
+
+    <label for="contactFirstname">First Name (required)</label>
+    <input id="contactFirstname" class="form-control" type="text" formControlName="firstname" placeholder="Firstname" />
+
+    <label for="contactLastname">Last Name (required)</label>
+    <input id="contactLastname" class="form-control" type="text" formControlName="lastname" placeholder="Lastname" />
+
+    <label for="contactPhone">Phone (required)</label>
+    <input id="contactPhone" class="form-control" type="text" formControlName="phone" placeholder="Phone number" />
+
+
+    <label for="contactEmail">Email (required)</label>
+    <input id="contactEmail" class="form-control" type="text" formControlName="email" placeholder="Email" />
+
+    <label for="contactEmail2">Email (repeat again)</label>
+    <input id="contactEmail2" class="form-control" type="text" formControlName="email2" placeholder="Enter the same email again" />
+
+        <button type="submit" class="btn btn-primary">Update Contact</button>
+  </fieldset>
+       
+      </form>
+    </div>
+  </div>
+</div>
+

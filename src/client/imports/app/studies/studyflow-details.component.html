@@ -1,0 +1,28 @@
+<button [routerLink]="['./subjects']" class="btn" >View/Edit Subjects in the Studyflow</button>
+<div class="row ma-studyflow-details-container">
+  <div class="col-sm-12 col-sm-offset-3">
+ 
+    <div class="jumbotron">
+    <h4>Details of the Studyflow</h4>
+    <form class="form-horizontal" (submit)="saveStudyFlow()" *ngIf="studyflow">
+      <div class="form-group">
+        <label>Studyflow Name (required)</label>
+        <input type="text" [(ngModel)]="studyflow.name" name="name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Description (optional)</label>
+        <input type="text" [(ngModel)]="studyflow.description" name="description" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button [routerLink]="['../..']" class="btn" >Back</button>
+      </div>
+    </form>
+  </div>
+  </div>
+</div>
+
+<event-templates-list></event-templates-list>
+<event-templates-form></event-templates-form>
+
