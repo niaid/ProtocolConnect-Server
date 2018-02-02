@@ -18,7 +18,7 @@
 <div class="col-sm-12 col-sm-offset-3">
   <h5>Send a new message</h5>
     <form class="col-sm-6">
-      <input type="text" class="form-control" #msgContent placeholder="Type your message here">
+      <input type="text" id="msgInput" class="form-control" #msgContent placeholder="Type your message here">
       <button type="button" class="btn btn-primary" (click)="sendMsg(msgContent.value)">Send</button>
     </form>
 </div>

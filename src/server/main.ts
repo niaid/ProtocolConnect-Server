@@ -256,7 +256,7 @@ if(Meteor.isServer) {
               console.log("send email with reset password.");
               Meteor.call('sendEmail',
                            email,
-                           "nih.studybuddy@gmail.com",
+                           "niaid.clinical.study@gmail.com",
                            "Your email has been successfully verified",
                            '');
               n = res.length
@@ -283,7 +283,7 @@ if(Meteor.isServer) {
               console.log("send email with reset password.");
               Meteor.call('sendEmail',
                            email,
-                           "nih.studybuddy@gmail.com",
+                           "niaid.clinical.study@gmail.com",
                            "Password reset",
                            'Your password has been reset to: "' + pass + '" (case sensitive; without quotes).');
               n = res.length
@@ -311,7 +311,7 @@ if(Meteor.isServer) {
               );
               Meteor.call('sendEmail',
                            email,
-                           "nih.studybuddy@gmail.com",
+                           "niaid.clinical.study@gmail.com",
                            "Your password has been successfully updated",
                            '');
               n = res.length
@@ -422,8 +422,8 @@ if(Meteor.isServer) {
                     "content": content
                   });
                   Meteor.call('sendEmail',
-                               "nih.studybuddy+test@gmail.com",
-                               "nih.studybuddy@gmail.com",
+                               "niaid.clinical.study+test@gmail.com",
+                               "niaid.clinical.study@gmail.com",
                                email + " has sent you a new message",
                                '');
                 }
@@ -562,8 +562,8 @@ if(Meteor.isServer) {
                 "response_details": response_details
               });
               Meteor.call('sendEmail',
-                           "nih.studybuddy+test@gmail.com",
-                           "nih.studybuddy@gmail.com",
+                           "niaid.clinical.study+test@gmail.com",
+                           "niaid.clinical.study@gmail.com",
                            subject_email + " has sent you a response",
                            '');
             }

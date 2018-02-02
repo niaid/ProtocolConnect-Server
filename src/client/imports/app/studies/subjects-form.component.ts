@@ -96,7 +96,7 @@ export class SubjectsFormComponent implements OnInit {
       const this_email = this.subjectsForm.value.email;
       const this_lastname = this.subjectsForm.value.lastname;
       const this_firstname = this.subjectsForm.value.firstname;
-      const server_address = "https://np-p.net/api/v1/";
+      const server_address = "https://protocol-connect.np-p.net/api/v1/";
       const already_enrolled_in_this_study = Subjects.find({email:this_email, study_id:this.study_id}).cursor.count();
       const same_email_registered = Subjects.find({email:this_email}).cursor.count();
 
@@ -134,7 +134,7 @@ export class SubjectsFormComponent implements OnInit {
             console.log("sending verification email to " + this_email);
             Meteor.call('sendEmail',
                         this_email,
-                        "nih.studybuddy@gmail.com",
+                        "niaid.clinical.study@gmail.com",
                         "Please confirm your email address",
                         'Please click the following link to verify your account: ' + 
                           server_address + 'verifyEmail/' + this_email + '. Your initial password is: "' + pass + '" (case sensitive; without quotes).');

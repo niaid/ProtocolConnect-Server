@@ -110,7 +110,7 @@ export class ContactFormComponent implements OnInit {
       const this_phone = this.contactForm.value.phone;
       const this_lastname = this.contactForm.value.lastname;
       const this_firstname = this.contactForm.value.firstname;
-      //const server_address = "https://np-p.net/api/v1/";
+      //const server_address = "https://protocol-connect.np-p.net/api/v1/";
 
       if(this.current_contact) {
         Contacts.update(this.current_contact._id, {

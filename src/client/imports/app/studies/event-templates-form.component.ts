@@ -66,7 +66,7 @@ export class EventTemplatesFormComponent implements OnInit {
   ngOnInit() {
     this.eventtemplatesForm = this.formBuilder.group({
       day:  ['', Validators.compose([Validators.required, Validators.pattern('[0-9]+')])],
-      time: ['', Validators.compose([Validators.required, Validators.pattern('[0-9][0-9]:[0-9][0-9]:[0-9][0-9]')])],
+      time: ['', Validators.compose([Validators.required, Validators.pattern('[0-9][0-9]:[0-9][0-9]')])],
       name: ['', Validators.required],
       location: ['', Validators.required],
       notes: [''],
@@ -85,6 +85,7 @@ export class EventTemplatesFormComponent implements OnInit {
       return;
     }
     if (this.eventtemplatesForm.valid) {
+      this.eventtemplatesForm.value.time = this.eventtemplatesForm.value.time + ":00";
       if(this.eventtemplatesForm.value['question']) {
         EventTemplates.insert(Object.assign( {}, this.eventtemplatesForm.value, {
           'studyflow_id': this.studyflowId,

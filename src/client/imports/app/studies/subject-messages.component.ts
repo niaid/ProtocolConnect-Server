@@ -83,6 +83,7 @@ export class SubjectMessagesComponent {
                     'is_to_patient':1,
                     'lastname':subject.lastname,
                     'firstname':subject.firstname
-    })
+    });
+    (document.getElementById('msgInput') as HTMLInputElement).value = "";
   }
 }
